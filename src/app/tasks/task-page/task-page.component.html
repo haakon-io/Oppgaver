@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="i-title">{{ taskList?.name }}</ion-title>
+    <ion-buttons slot="end">
+      <app-timer
+        class="task-timer"
+        [task]="selectedTask"
+        (timerCompleted)="onTimerCompleted()"
+      ></app-timer>
+      <ion-button (click)="openNewTaskModal()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-accordion-group>
+    <ng-container *ngIf="tasks.length === 0">
+      <div class="task-none-message">
+        <ion-text class="ion-padding">
+          <h2>
+            No tasks yet,
+            <a (click)="openNewTaskModal()"
+              >add one <ion-icon slot="icon-only" name="add"></ion-icon
+            ></a>
+          </h2>
+        </ion-text>
+      </div>
+    </ng-container>
+
+    <ng-container *ngFor="let task of tasks">
+      <ion-accordion [value]="task.id" class="task-accordion-item">
+        <ion-item slot="header" color="light">
+          <ion-icon
+            name="checkmark-circle-outline"
+            [ngClass]="{ completed: task.completed }"
+            class="checkmark-icon"
+          ></ion-icon>
+          <ion-label
+            class="task-name"
+            [ngClass]="{ completed: task.completed }"
+            >{{ task.name }}</ion-label
+          >
+          <!-- <ion-buttons slot="end">
+            <ion-button
+              *ngIf="!task.completed"
+              (click)="startTimer(task); $event.stopPropagation()"
+            >
+              <ion-icon name="timer-outline" class="timer-icon"></ion-icon>
+            </ion-button>
+
+            <ion-button (click)="editTask(task); $event.stopPropagation()">
+              <ion-icon name="build-outline" class="build-icon"></ion-icon>
+            </ion-button>
+            <ion-button
+              *ngIf="!task.completed"
+              (click)="deleteTask(task.id); $event.stopPropagation()"
+            >
+              <ion-icon name="trash-outline" class="trash-icon"></ion-icon>
+            </ion-button>
+          </ion-buttons> -->
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          <ion-toolbar>
+            <ion-buttons>
+              <ion-buttons slot="end">
+                <ion-button
+                  *ngIf="!task.completed"
+                  (click)="startTimer(task); $event.stopPropagation()"
+                >
+                  <ion-icon name="timer-outline" class="timer-icon"></ion-icon>
+                </ion-button>
+
+                <ion-button (click)="editTask(task); $event.stopPropagation()">
+                  <ion-icon name="build-outline" class="build-icon"></ion-icon>
+                </ion-button>
+                <ion-button
+                  *ngIf="!task.completed"
+                  (click)="deleteTask(task.id); $event.stopPropagation()"
+                >
+                  <ion-icon name="trash-outline" class="trash-icon"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-buttons>
+          </ion-toolbar>
+
+          <p class="task-description">Description: {{ task.description }}</p>
+          <p class="task-completed">
+            Completed: {{ task.completed ? "Yes" : "No" }}
+          </p>
+          <p class="task-length">Time Length: {{ task.timeLength }} minutes</p>
+        </div>
+      </ion-accordion>
+    </ng-container>
+  </ion-accordion-group>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goToTasksHome()">
+        <ion-icon slot="icon-only" name="home-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="openNewTaskModal()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

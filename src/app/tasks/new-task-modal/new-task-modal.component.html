@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ task ? "Edit Task" : "New Task" }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancel()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="taskData">
+  <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input
+          [(ngModel)]="taskData.name"
+          name="name"
+          required
+          autocapitalize="sentences"
+          autocomplete="on"
+          appAutofocus
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Time Length (minutes)</ion-label>
+        <ion-input
+          [(ngModel)]="taskData.timeLength"
+          name="timeLength"
+          type="number"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Completed</ion-label>
+        <ion-checkbox
+          [(ngModel)]="taskData.completed"
+          name="completed"
+        ></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Description</ion-label>
+        <ion-textarea
+          rows="8"
+          [(ngModel)]="taskData.description"
+          name="description"
+          required
+          autocapitalize="sentences"
+          autocomplete="on"
+        ></ion-textarea>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="full" type="submit" [disabled]="!taskForm.valid">{{
+      task ? "Update Task" : "Create Task"
+    }}</ion-button>
+  </form>
+</ion-content>

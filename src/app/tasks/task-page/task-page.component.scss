@@ -1,0 +1,56 @@
+.task {
+  &-name {
+    font-family: "Roboto", sans-serif;
+    color: rgb(185, 226, 245);
+    font-size: 1.25rem;
+  }
+  &-name.completed {
+    color: #4caf50;
+  }
+  &-description,
+  &-completed,
+  &-length {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    font-size: 1.25rem;
+  }
+  &-timer {
+    margin-right: 0.5rem;
+  }
+  &-none-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+  }
+}
+
+.checkmark-icon {
+  color: #aaa;
+  margin-right: 1rem;
+}
+
+.checkmark-icon.completed {
+  color: #4caf50;
+}
+
+.trash-icon {
+  color: red;
+}
+
+.build-icon,
+.timer-icon {
+  color: white;
+}
+
+.timer-container {
+  display: flex;
+  align-items: center;
+}
+
+.counter {
+  font-size: 0.8em; // Adjust the font size to better fit within the toolbar
+  margin-right: 8px;
+}

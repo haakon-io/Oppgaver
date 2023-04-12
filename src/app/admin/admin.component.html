@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="i-title">Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-accordion-group>
+    <ion-accordion class="task-accordion-item">
+      <ion-item slot="header" color="light">
+        <ion-label>Database</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-buttons slot="start">
+          <ion-button (click)="presentConfirmPurge()">
+            <ion-icon name="trash-outline" class="admin-icon"></ion-icon>Reset
+            Database
+          </ion-button>
+        </ion-buttons>
+      </div>
+
+      <div class="ion-padding" slot="content">
+        <ion-buttons slot="start">
+          <ion-button (click)="addSeedTaskList()">
+            <ion-icon name="add-circle-outline" class="admin-icon"></ion-icon
+            >Add Sample Task List
+          </ion-button>
+        </ion-buttons>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goHome()">
+        <ion-icon slot="end" name="home-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
