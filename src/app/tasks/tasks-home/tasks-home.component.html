@@ -57,12 +57,16 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="goToAdminSettings()" title="Settings">
-        <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
+        <ion-icon
+          slot="icon-only"
+          name="settings-outline"
+          class="ion-icon"
+        ></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button (click)="addNewTaskList()" title="Add Task List">
-        <ion-icon name="add-outline" class="add-icon"></ion-icon>
+        <ion-icon name="add-outline" class="ion-icon"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
