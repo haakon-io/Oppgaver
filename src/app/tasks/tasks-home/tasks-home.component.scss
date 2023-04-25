@@ -7,4 +7,14 @@
     height: 100%;
     text-align: center;
   }
+
+  &-name {
+    font-family: "Roboto", sans-serif;
+    color: rgb(185, 226, 245);
+    font-size: 1.25rem;
+  }
+
+  &-edit-icon {
+    margin-left: 1rem;
+  }
 }

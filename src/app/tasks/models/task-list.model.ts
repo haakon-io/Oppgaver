@@ -13,4 +13,17 @@ export class TaskListModel {
     this.tasks = tasks;
     this.description = description;
   }
+
+  update(taskListData: TaskListModel) {
+    this.id = taskListData.id ?? this.id;
+    this.name = taskListData.name ?? this.name;
+    this.description = taskListData.description ?? this.description;
+    this.tasks = taskListData.tasks ?? this.tasks;
+  }
+}
+
+export interface TaskListData {
+  name: string;
+  description: string;
+  tasks: TaskModel[];
 }

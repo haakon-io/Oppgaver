@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>{{ taskList ? "Edit Task List" : "New Task List" }}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="onCancel()">Close</ion-button>
+      <ion-button (click)="onCancel()" title="Close">Close</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -39,7 +39,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button expand="block" (click)="onSave()">
+        <ion-button expand="block" (click)="onSave()" title="Save">
           {{ taskList ? "Update Task List" : "Create Task List" }}
         </ion-button>
       </ion-col>

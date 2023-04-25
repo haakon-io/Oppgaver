@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit, Input } from '@angular/core';
 import { TaskModel } from '../models/task.model';
 import { TaskService } from '../services/task.service';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { NewTaskModalComponent } from '../new-task-modal/new-task-modal.component';
 import { TimerComponent } from '../shared/timer/timer.component';
 import { TaskListModel } from '../models/task-list.model';
@@ -24,13 +24,13 @@ export class TaskPageComponent implements OnInit {
     private taskService: TaskService,
     private taskListService: TaskListService,
     private modalController: ModalController,
+    private alertCtrl: AlertController,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
   async ngOnInit() {
     this.taskListId = this.route.snapshot.paramMap.get('taskListId');
-    console.log('taskListId passed in the route is', this.taskListId);
     if (this.taskListId) {
       this.taskList = await this.taskListService.getTaskListById(
         this.taskListId
@@ -87,6 +87,32 @@ export class TaskPageComponent implements OnInit {
     });
 
     return await modal.present();
+  }
+
+  async presentConfirmDelete(taskId: number) {
+    const alert = await this.alertCtrl.create({
+      header: 'Confirm Delete',
+      message: 'Delete Task?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Delete canceled');
+          },
+        },
+        {
+          text: 'Delete',
+          handler: async () => {
+            await this.deleteTask(taskId);
+            console.log('Task list deleted');
+          },
+        },
+      ],
+    });
+
+    await alert.present();
   }
 
   async deleteTask(taskId: number) {

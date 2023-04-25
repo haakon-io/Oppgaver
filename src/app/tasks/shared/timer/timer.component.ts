@@ -17,7 +17,6 @@ export class TimerComponent implements OnInit {
 
   startTimer() {
     if (!this.task) {
-      console.log('No task provided');
       return;
     }
 

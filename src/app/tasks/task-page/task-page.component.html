@@ -2,14 +2,18 @@
   <ion-toolbar>
     <ion-title class="i-title">{{ taskList?.name }}</ion-title>
     <ion-buttons slot="end">
+      <ion-button (click)="openNewTaskModal()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
       <app-timer
         class="task-timer"
         [task]="selectedTask"
         (timerCompleted)="onTimerCompleted()"
       ></app-timer>
-      <ion-button (click)="openNewTaskModal()">
-        <ion-icon slot="icon-only" name="add"></ion-icon>
-      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -42,29 +46,11 @@
             [ngClass]="{ completed: task.completed }"
             >{{ task.name }}</ion-label
           >
-          <!-- <ion-buttons slot="end">
-            <ion-button
-              *ngIf="!task.completed"
-              (click)="startTimer(task); $event.stopPropagation()"
-            >
-              <ion-icon name="timer-outline" class="timer-icon"></ion-icon>
-            </ion-button>
-
-            <ion-button (click)="editTask(task); $event.stopPropagation()">
-              <ion-icon name="build-outline" class="build-icon"></ion-icon>
-            </ion-button>
-            <ion-button
-              *ngIf="!task.completed"
-              (click)="deleteTask(task.id); $event.stopPropagation()"
-            >
-              <ion-icon name="trash-outline" class="trash-icon"></ion-icon>
-            </ion-button>
-          </ion-buttons> -->
         </ion-item>
         <div class="ion-padding" slot="content">
           <ion-toolbar>
             <ion-buttons>
-              <ion-buttons slot="end">
+              <ion-buttons slot="start">
                 <ion-button
                   *ngIf="!task.completed"
                   (click)="startTimer(task); $event.stopPropagation()"
@@ -75,13 +61,17 @@
                 <ion-button (click)="editTask(task); $event.stopPropagation()">
                   <ion-icon name="build-outline" class="build-icon"></ion-icon>
                 </ion-button>
-                <ion-button
-                  *ngIf="!task.completed"
-                  (click)="deleteTask(task.id); $event.stopPropagation()"
-                >
-                  <ion-icon name="trash-outline" class="trash-icon"></ion-icon>
-                </ion-button>
               </ion-buttons>
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button
+                *ngIf="!task.completed"
+                (click)="
+                  presentConfirmDelete(task.id); $event.stopPropagation()
+                "
+              >
+                <ion-icon name="trash-outline" class="trash-icon"></ion-icon>
+              </ion-button>
             </ion-buttons>
           </ion-toolbar>
 

@@ -1,7 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
-import { TaskListModel } from '../models/task-list.model';
+import { TaskListData, TaskListModel } from '../models/task-list.model';
 import { TaskService } from './task.service';
+import { TaskModel } from '../models/task.model';
+
+type UpdateTaskListData = {
+  id: string;
+  name: string;
+  tasks?: TaskModel[];
+  description?: string;
+};
 
 @Injectable({
   providedIn: 'root',
@@ -25,9 +33,7 @@ export class TaskListService {
     return taskLists ?? [];
   }
 
-  async createTaskList(
-    taskListData: Omit<TaskListModel, 'id'>
-  ): Promise<TaskListModel> {
+  async createTaskList(taskListData: TaskListData): Promise<TaskListModel> {
     await this.init();
     const taskLists = await this.getTaskLists();
     const newTaskList = new TaskListModel(
@@ -36,17 +42,20 @@ export class TaskListService {
     );
     taskLists.push(newTaskList);
     await this._storage?.set(this.taskListsKey, taskLists);
-    console.log('createTaskList called', newTaskList);
     return newTaskList;
   }
 
-  async updateTaskList(taskList: TaskListModel): Promise<void> {
+  async updateTaskList(taskListData: TaskListModel | null): Promise<void> {
     await this.init();
     const taskLists = await this.getTaskLists();
-    const taskListIndex = taskLists.findIndex((tl) => tl.id === taskList.id);
-    if (taskListIndex !== -1) {
-      taskLists[taskListIndex] = taskList;
-      await this._storage?.set(this.taskListsKey, taskLists);
+    if (taskListData !== null) {
+      const taskListIndex = taskLists.findIndex(
+        (t) => t.id === taskListData.id
+      );
+      if (taskListIndex !== -1) {
+        taskLists[taskListIndex] = taskListData;
+        await this._storage?.set(this.taskListsKey, taskLists);
+      }
     }
   }
 

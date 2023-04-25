@@ -22,7 +22,6 @@ export class TasksHomeComponent implements OnInit {
 
   async ngOnInit() {
     this.tasksListData = await this.taskListService.getTaskLists();
-    console.log('tasksListData is', this.tasksListData);
   }
 
   async addNewTaskList() {
@@ -43,6 +42,34 @@ export class TasksHomeComponent implements OnInit {
     this.router.navigate(['/task-page', taskList.id]);
   }
 
+  async editTaskListItem(taskListItem: TaskListModel) {
+    console.log(
+      'editTaskListItem triggered and the taskListItem is',
+      taskListItem
+    );
+    const modal = await this.modalController.create({
+      component: TaskListComponent,
+      componentProps: {
+        taskList: { ...taskListItem },
+      },
+    });
+
+    modal.onDidDismiss().then(async (result) => {
+      if (result.data) {
+        await this.fetchTaskLists(); // Refresh the tasks list after the modal is dismissed
+      }
+    });
+
+    return await modal.present();
+  }
+
+  async fetchTaskLists() {
+    if (this.tasksListData) {
+      this.tasksListData = await this.taskListService.getTaskLists();
+    }
+    console.log('Fetched tasks:', this.tasksListData);
+  }
+
   async presentConfirmDelete(taskListId: string) {
     const alert = await this.alertCtrl.create({
       header: 'Confirm Delete',
@@ -59,7 +86,7 @@ export class TasksHomeComponent implements OnInit {
         {
           text: 'Delete',
           handler: async () => {
-            await this.deleteTaskList(taskListId);
+            await this._deleteTaskList(taskListId);
             console.log('Task list deleted');
           },
         },
@@ -69,7 +96,7 @@ export class TasksHomeComponent implements OnInit {
     await alert.present();
   }
 
-  async deleteTaskList(taskListId: string) {
+  private async _deleteTaskList(taskListId: string) {
     await this.taskListService.deleteTaskList(taskListId);
     this.tasksListData = await this.taskListService.getTaskLists();
   }

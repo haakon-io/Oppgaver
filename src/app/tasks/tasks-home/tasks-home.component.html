@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title class="i-title">Tasky</ion-title>
+    <ion-title class="i-title">Oppgaver</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="addNewTaskList()">
         <ion-icon name="add-outline" class="add-icon"></ion-icon>
@@ -10,45 +10,58 @@
 </ion-header>
 
 <ion-content>
-  <ng-container *ngIf="tasksListData">
-    <ion-list>
-      <ion-item *ngFor="let taskList of tasksListData">
-        <ion-label>{{ taskList.name }}</ion-label>
-        <ion-note>{{ taskList.description }}</ion-note>
+  <ng-container *ngFor="let taskList of tasksListData">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title (click)="editTaskList(taskList)">{{
+          taskList.name
+        }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>{{ taskList.description }}</ion-card-content>
+      <ion-toolbar>
         <ion-buttons slot="end">
-          <ion-button (click)="editTaskList(taskList)">
-            <ion-icon name="create-outline"></ion-icon>
+          <ion-button
+            title="Delete Task List"
+            (click)="
+              presentConfirmDelete(taskList.id); $event.stopPropagation()
+            "
+          >
+            <ion-icon name="trash-outline" class="trash-icon"></ion-icon>
           </ion-button>
-          <ion-button (click)="presentConfirmDelete(taskList.id)">
-            <ion-icon name="trash-outline"></ion-icon>
+
+          <ion-button
+            title="Edit Task List"
+            (click)="editTaskListItem(taskList); $event.stopPropagation()"
+          >
+            <ion-icon
+              name="settings-outline"
+              class="tasks-edit-icon"
+            ></ion-icon>
+          </ion-button>
+          <ion-button
+            title="Edit Tasks"
+            (click)="editTaskList(taskList); $event.stopPropagation()"
+          >
+            <ion-icon
+              name="list-circle-outline"
+              class="tasks-edit-icon"
+            ></ion-icon>
           </ion-button>
         </ion-buttons>
-      </ion-item>
-    </ion-list>
-  </ng-container>
-  <ng-container *ngIf="!tasksListData || tasksListData.length === 0">
-    <div class="tasks-none-message">
-      <ion-text class="ion-padding">
-        <h2>
-          No task lists yet,
-          <a (click)="addNewTaskList()"
-            >add one <ion-icon name="add-outline" class="add-icon"></ion-icon
-          ></a>
-        </h2>
-      </ion-text>
-    </div>
+      </ion-toolbar>
+    </ion-card>
   </ng-container>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="goToAdminSettings()">
-        <ion-icon slot="icon-only" name="cog-outline"></ion-icon>
+      <ion-button (click)="goToAdminSettings()" title="Settings">
+        <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button (click)="addNewTaskList()">
+      <ion-button (click)="addNewTaskList()" title="Add Task List">
         <ion-icon name="add-outline" class="add-icon"></ion-icon>
       </ion-button>
     </ion-buttons>

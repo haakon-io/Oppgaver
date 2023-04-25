@@ -4,7 +4,7 @@ import { AlertController, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { TaskService } from '../tasks/services/task.service';
 import { TaskListService } from '../tasks/services/task-list.service';
-import { TaskListModel } from '../tasks/models/task-list.model';
+import { TaskListData, TaskListModel } from '../tasks/models/task-list.model';
 import { TaskModel } from '../tasks/models/task.model';
 import { HttpClient } from '@angular/common/http';
 
@@ -58,59 +58,8 @@ export class AdminComponent {
     this.router.navigate(['/tasks']);
   }
 
-  // async addSeedTaskList() {
-  //   const taskListData: Omit<TaskListModel, 'id'> = {
-  //     name: 'Sample Task List',
-  //     description: 'A sample task list with some tasks',
-  //     tasks: [],
-  //   };
-
-  //   const createdTaskList = await this.taskListService.createTaskList(
-  //     taskListData
-  //   );
-
-  //   const tasks: Omit<TaskModel, 'id'>[] = [
-  //     {
-  //       taskListId: createdTaskList.id,
-  //       name: 'Sample Task 1',
-  //       description: 'A sample task 1',
-  //       completed: false,
-  //       timeLength: 25,
-  //     },
-  //     {
-  //       taskListId: createdTaskList.id,
-  //       name: 'Sample Task 2',
-  //       description: 'A sample task 2',
-  //       completed: false,
-  //       timeLength: 15,
-  //     },
-  //     {
-  //       taskListId: createdTaskList.id,
-  //       name: 'Sample Task 3',
-  //       description: 'A sample task 3',
-  //       completed: false,
-  //       timeLength: 45,
-  //     },
-  //   ];
-
-  //   for (const task of tasks) {
-  //     await this.taskService.createTask(task);
-  //   }
-
-  //   await this.presentToast('Sample Task List created successfully!');
-  // }
-
   async addSeedTaskList() {
     const seedDataUrl = './assets/data/seed-data.json';
-
-    // Fetch seed data from the JSON file
-    // const seedData = await this.httpClient
-    //   .get<{
-    //     name: string;
-    //     description: string;
-    //     tasks: Omit<TaskModel, 'id'>[];
-    //   }>(seedDataUrl)
-    //   .toPromise();
     const seedData = (await this.httpClient
       .get<{
         name: string;
@@ -119,7 +68,7 @@ export class AdminComponent {
       }>(seedDataUrl)
       .toPromise()) as TaskListModel;
 
-    const taskListData: Omit<TaskListModel, 'id'> = {
+    const taskListData: TaskListData = {
       name: seedData.name,
       description: seedData.description,
       tasks: [],
