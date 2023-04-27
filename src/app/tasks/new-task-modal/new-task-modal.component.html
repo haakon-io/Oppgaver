@@ -1,8 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>{{ task ? "Edit Task" : "New Task" }}</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="onCancel()">Close</ion-button>
+    <ion-buttons slot="end" class="i-buttons-end">
+      <ion-button (click)="onCancel()">
+        <ion-icon
+          slot="icon-only"
+          name="close-outline"
+          class="ion-icon"
+        ></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

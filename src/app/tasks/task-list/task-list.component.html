@@ -1,8 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>{{ taskList ? "Edit Task List" : "New Task List" }}</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="onCancel()" title="Close">Close</ion-button>
+    <ion-buttons slot="end" class="i-buttons-end">
+      <ion-button (click)="onCancel()" title="Close">
+        <ion-icon
+          slot="icon-only"
+          name="close-outline"
+          class="ion-icon"
+        ></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -30,6 +36,7 @@
           <ion-label position="floating">Description</ion-label>
           <ion-textarea
             [(ngModel)]="taskListData.description"
+            rows="8"
             autocapitalize="sentences"
             autocomplete="on"
             required

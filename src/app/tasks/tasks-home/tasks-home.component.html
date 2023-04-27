@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title class="i-title">Oppgaver</ion-title>
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" class="i-buttons-end">
       <ion-button (click)="addNewTaskList()">
         <ion-icon name="add-outline" class="add-icon"></ion-icon>
       </ion-button>
@@ -19,7 +19,7 @@
       </ion-card-header>
       <ion-card-content>{{ taskList.description }}</ion-card-content>
       <ion-toolbar>
-        <ion-buttons slot="end">
+        <ion-buttons slot="end" class="i-buttons-end">
           <ion-button
             title="Delete Task List"
             (click)="
@@ -55,7 +55,7 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-buttons slot="start" class="i-buttons-start">
       <ion-button (click)="goToAdminSettings()" title="Settings">
         <ion-icon
           slot="icon-only"
@@ -64,7 +64,7 @@
         ></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" class="i-buttons-end">
       <ion-button (click)="addNewTaskList()" title="Add Task List">
         <ion-icon name="add-outline" class="ion-icon"></ion-icon>
       </ion-button>
