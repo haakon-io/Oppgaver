@@ -11,7 +11,7 @@
 
 <ion-content>
   <ng-container *ngFor="let taskList of tasksListData">
-    <ion-card>
+    <ion-card class="i-card">
       <ion-card-header>
         <ion-card-title (click)="editTaskList(taskList)">{{
           taskList.name

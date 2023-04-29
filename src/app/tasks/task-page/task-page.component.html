@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title class="i-title">{{ taskList?.name }}</ion-title>
     <ion-buttons slot="end" class="i-buttons-end">
-      <ion-button (click)="openNewTaskModal()">
+      <ion-button (click)="openNewTaskModal()" title="Add">
         <ion-icon slot="icon-only" name="add"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -34,7 +34,7 @@
     </ng-container>
 
     <ng-container *ngFor="let task of tasks">
-      <ion-accordion [value]="task.id" class="task-accordion-item">
+      <ion-accordion [value]="task.id" class="i-accordion-item">
         <ion-item slot="header" color="light">
           <ion-icon
             name="checkmark-circle-outline"
@@ -89,12 +89,12 @@
 <ion-footer>
   <ion-toolbar>
     <ion-buttons slot="start" class="i-buttons-start">
-      <ion-button (click)="goToTasksHome()">
+      <ion-button (click)="goToTasksHome()" title="Home">
         <ion-icon slot="icon-only" name="home-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end" class="i-buttons-end">
-      <ion-button (click)="openNewTaskModal()">
+      <ion-button (click)="openNewTaskModal()" title="Add">
         <ion-icon slot="icon-only" name="add"></ion-icon>
       </ion-button>
     </ion-buttons>
