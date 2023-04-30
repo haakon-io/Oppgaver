@@ -17,7 +17,6 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <ion-accordion-group>
     <ng-container *ngIf="tasks.length === 0">
@@ -32,7 +31,6 @@
         </ion-text>
       </div>
     </ng-container>
-
     <ng-container *ngFor="let task of tasks">
       <ion-accordion [value]="task.id" class="i-accordion-item">
         <ion-item slot="header" color="light">
@@ -47,39 +45,53 @@
             >{{ task.name }}</ion-label
           >
         </ion-item>
-        <div class="ion-padding" slot="content">
-          <ion-toolbar>
-            <ion-buttons>
-              <ion-buttons slot="start">
+        <div slot="content">
+          <ion-card class="i-card">
+            <p class="task-description">{{ task.description }}</p>
+            <div class="task-items">
+              <div class="task-item-left">
+                Completed: {{ task.completed ? "Yes" : "No" }}
+              </div>
+              <div class="task-item-right">
+                Duration: {{ task.timeLength }} minutes
+              </div>
+            </div>
+
+            <ion-toolbar class="i-toolbar">
+              <ion-buttons>
+                <ion-buttons slot="start">
+                  <ion-button
+                    *ngIf="!task.completed"
+                    (click)="startTimer(task); $event.stopPropagation()"
+                  >
+                    <ion-icon
+                      name="timer-outline"
+                      class="timer-icon"
+                    ></ion-icon>
+                  </ion-button>
+
+                  <ion-button
+                    (click)="editTask(task); $event.stopPropagation()"
+                  >
+                    <ion-icon
+                      name="build-outline"
+                      class="build-icon"
+                    ></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-buttons>
+              <ion-buttons slot="end" class="i-buttons-end">
                 <ion-button
                   *ngIf="!task.completed"
-                  (click)="startTimer(task); $event.stopPropagation()"
+                  (click)="
+                    presentConfirmDelete(task.id); $event.stopPropagation()
+                  "
                 >
-                  <ion-icon name="timer-outline" class="timer-icon"></ion-icon>
-                </ion-button>
-
-                <ion-button (click)="editTask(task); $event.stopPropagation()">
-                  <ion-icon name="build-outline" class="build-icon"></ion-icon>
+                  <ion-icon name="trash-outline" class="trash-icon"></ion-icon>
                 </ion-button>
               </ion-buttons>
-            </ion-buttons>
-            <ion-buttons slot="end" class="i-buttons-end">
-              <ion-button
-                *ngIf="!task.completed"
-                (click)="
-                  presentConfirmDelete(task.id); $event.stopPropagation()
-                "
-              >
-                <ion-icon name="trash-outline" class="trash-icon"></ion-icon>
-              </ion-button>
-            </ion-buttons>
-          </ion-toolbar>
-
-          <p class="task-description">Description: {{ task.description }}</p>
-          <p class="task-completed">
-            Completed: {{ task.completed ? "Yes" : "No" }}
-          </p>
-          <p class="task-length">Time Length: {{ task.timeLength }} minutes</p>
+            </ion-toolbar>
+          </ion-card>
         </div>
       </ion-accordion>
     </ng-container>
