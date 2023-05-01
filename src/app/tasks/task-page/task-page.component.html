@@ -7,17 +7,7 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <app-timer
-        class="task-timer"
-        [task]="selectedTask"
-        (timerCompleted)="onTimerCompleted()"
-      ></app-timer>
-    </ion-buttons>
-  </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <ion-accordion-group>
     <ng-container *ngIf="tasks.length === 0">
@@ -91,7 +81,6 @@
     </ng-container>
   </ion-accordion-group>
 </ion-content>
-
 <ion-footer>
   <ion-toolbar>
     <ion-buttons slot="start" class="i-buttons-start">
@@ -99,6 +88,13 @@
         <ion-icon slot="icon-only" name="home-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
+    <div class="task-timer-container">
+      <app-timer
+        class="task-timer"
+        [task]="selectedTask"
+        (timerCompleted)="onTimerCompleted()"
+      ></app-timer>
+    </div>
     <ion-buttons slot="end" class="i-buttons-end">
       <ion-button (click)="openNewTaskModal()" title="Add">
         <ion-icon slot="icon-only" name="add"></ion-icon>
