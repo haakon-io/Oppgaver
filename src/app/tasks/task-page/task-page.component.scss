@@ -14,8 +14,13 @@
     color: white;
     font-size: 1.25rem;
   }
-  &-timer {
+  &-timer-container {
     margin-left: 1.25rem;
+    display: flex;
+    justify-content: center;
+  }
+  &-task-timer {
+    align-items: center;
   }
   &-none-message {
     display: flex;
@@ -48,14 +53,4 @@
 .build-icon,
 .timer-icon {
   color: white;
-}
-
-.timer-container {
-  display: flex;
-  align-items: center;
-}
-
-.counter {
-  font-size: 0.8em; // Adjust the font size to better fit within the toolbar
-  margin-right: 8px;
 }
