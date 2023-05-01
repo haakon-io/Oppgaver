@@ -37,6 +37,12 @@
       <ion-accordion [value]="task.id" class="i-accordion-item">
         <ion-item slot="header" color="light">
           <ion-icon
+            *ngIf="!task.completed"
+            name="ellipse-outline"
+            class="ellipse-icon"
+          ></ion-icon>
+          <ion-icon
+            *ngIf="task.completed"
             name="checkmark-circle-outline"
             [ngClass]="{ completed: task.completed }"
             class="checkmark-icon"
