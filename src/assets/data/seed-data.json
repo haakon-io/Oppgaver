@@ -7,12 +7,15 @@
       "name": "Create Preferment",
       "description": "Mix together 150 grams Bread Flour, 150 grams of warm filtered water and a pinch of yeast 12-14 hours before you bake your Baguettes",
       "completed": false,
-      "timeLength": 5
+      "timedTask": false,
+      "timeLength": 0
     },
     {
       "taskListId": "",
       "name": "Mix preferment, Salt & Water",
       "description": "In a stand mixer add your Preferment, 13 grams of salt and 240 grams of warm filtered water for 2 minutes on medium low speed.",
+      "completed": false,
+      "timedTask": true,
       "timeLength": 2
     },
     {
@@ -20,6 +23,7 @@
       "name": "Mix Flour in with Preferment",
       "description": "Mix 400 grams of Bread Flour and your preferment water mix for 2 minutes on medium low speed.",
       "completed": false,
+      "timedTask": true,
       "timeLength": 2
     }
   ]

@@ -4,6 +4,7 @@ import { AlertController, ModalController } from '@ionic/angular';
 import { TaskListComponent } from '../task-list/task-list.component';
 import { Router } from '@angular/router';
 import { TaskListService } from '../services/task-list.service';
+import { ToastService } from 'src/app/shared/services/toast-service.service';
 
 @Component({
   selector: 'app-tasks-home',
@@ -17,7 +18,8 @@ export class TasksHomeComponent implements OnInit {
     private taskListService: TaskListService,
     private modalController: ModalController,
     private router: Router,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private toastSvc: ToastService
   ) {}
 
   async ngOnInit() {
@@ -38,15 +40,10 @@ export class TasksHomeComponent implements OnInit {
   }
 
   editTaskList(taskList: TaskListModel) {
-    console.log('editTaskList() called and the taskList.id is', taskList.id);
     this.router.navigate(['/task-page', taskList.id]);
   }
 
   async editTaskListItem(taskListItem: TaskListModel) {
-    console.log(
-      'editTaskListItem triggered and the taskListItem is',
-      taskListItem
-    );
     const modal = await this.modalController.create({
       component: TaskListComponent,
       componentProps: {
@@ -67,7 +64,6 @@ export class TasksHomeComponent implements OnInit {
     if (this.tasksListData) {
       this.tasksListData = await this.taskListService.getTaskLists();
     }
-    console.log('Fetched tasks:', this.tasksListData);
   }
 
   async presentConfirmDelete(taskListId: string) {
@@ -80,14 +76,14 @@ export class TasksHomeComponent implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            console.log('Delete canceled');
+            this.toastSvc.presentToast('Delete canceled');
           },
         },
         {
           text: 'Delete',
           handler: async () => {
             await this._deleteTaskList(taskListId);
-            console.log('Task list deleted');
+            this.toastSvc.presentToast('Task list deleted');
           },
         },
       ],

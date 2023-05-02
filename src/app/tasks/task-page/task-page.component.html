@@ -49,7 +49,7 @@
               <div class="task-item-left">
                 Completed: {{ task.completed ? "Yes" : "No" }}
               </div>
-              <div class="task-item-right">
+              <div class="task-item-right" *ngIf="task.timeLength > 0">
                 Duration: {{ task.timeLength }} minutes
               </div>
             </div>
@@ -79,7 +79,11 @@
                   </ion-button>
                 </ion-buttons>
               </ion-buttons>
-              <ion-buttons slot="end" class="i-buttons-end">
+              <ion-buttons
+                slot="end"
+                class="i-buttons-end"
+                *ngIf="task.timeLength > 0"
+              >
                 <ion-button
                   *ngIf="!task.completed"
                   (click)="startTimer(task); $event.stopPropagation()"
