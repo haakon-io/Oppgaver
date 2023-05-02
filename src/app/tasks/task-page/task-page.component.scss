@@ -12,8 +12,13 @@
     color: white;
     font-size: 1.25rem;
   }
-  &-timer {
+  &-timer-container {
     margin-left: 1.25rem;
+    display: flex;
+    justify-content: center;
+  }
+  &-task-timer {
+    align-items: center;
   }
   &-none-message {
     display: flex;
@@ -28,6 +33,11 @@
     justify-content: space-between;
     font-size: 1.25rem;
   }
+}
+
+.ellipse-icon {
+  color: red;
+  margin-right: 1rem;
 }
 
 .checkmark-icon {
