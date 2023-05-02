@@ -1,6 +1,7 @@
 {
   "name": "Baguette Steps",
   "description": "A sample task list for baking Baguettes",
+  "createdAt": "",
   "tasks": [
     {
       "taskListId": "",
