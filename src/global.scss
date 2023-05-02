@@ -59,7 +59,7 @@ body {
   &-title {
     font-family: "Roboto Thin", sans-serif;
     color: white;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 
   &-buttons-start {
@@ -72,6 +72,11 @@ body {
 
   &-card {
     background-color: #2e2f2e;
+
+    &-title {
+      color: #fff;
+      font-size: 1.1rem;
+    }
   }
 
   &-accordion-item {
