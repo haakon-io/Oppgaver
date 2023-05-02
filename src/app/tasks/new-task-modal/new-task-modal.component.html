@@ -28,7 +28,16 @@
         ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Time Length (minutes)</ion-label>
+        <ion-label>Timed Task</ion-label>
+        <ion-toggle
+          (ionChange)="toggleTime(taskData)"
+          [checked]="taskData.timedTask"
+          label-placement="fixed"
+        ></ion-toggle>
+      </ion-item>
+
+      <ion-item *ngIf="taskData.timedTask">
+        <ion-label position="floating">Duration (minutes)</ion-label>
         <ion-input
           [(ngModel)]="taskData.timeLength"
           name="timeLength"

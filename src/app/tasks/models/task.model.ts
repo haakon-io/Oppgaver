@@ -4,6 +4,7 @@ export class TaskModel {
   name: string;
   description: string;
   completed: boolean;
+  timedTask: boolean;
   timeLength: number;
 
   constructor(
@@ -12,6 +13,7 @@ export class TaskModel {
     name: string,
     description: string,
     completed: boolean,
+    timedTask: boolean,
     timeLength: number
   ) {
     this.id = id;
@@ -19,6 +21,7 @@ export class TaskModel {
     this.name = name;
     this.description = description;
     this.completed = completed;
+    this.timedTask = timedTask;
     this.timeLength = timeLength;
   }
 }

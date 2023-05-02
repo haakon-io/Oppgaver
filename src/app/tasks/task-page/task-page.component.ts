@@ -7,6 +7,7 @@ import { TimerComponent } from '../shared/timer/timer.component';
 import { TaskListModel } from '../models/task-list.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskListService } from '../services/task-list.service';
+import { ToastService } from 'src/app/shared/services/toast-service.service';
 
 @Component({
   selector: 'app-task-page',
@@ -26,7 +27,8 @@ export class TaskPageComponent implements OnInit {
     private modalController: ModalController,
     private alertCtrl: AlertController,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastSvc: ToastService
   ) {}
 
   async ngOnInit() {
@@ -47,7 +49,6 @@ export class TaskPageComponent implements OnInit {
     } else {
       this.tasks = await this.taskService.getTasks();
     }
-    console.log('Fetched tasks:', this.tasks);
   }
 
   async openNewTaskModal(taskToEdit?: TaskModel) {
@@ -99,14 +100,14 @@ export class TaskPageComponent implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            console.log('Delete canceled');
+            this.toastSvc.presentToast('Delete Cancelled');
           },
         },
         {
           text: 'Delete',
           handler: async () => {
             await this.deleteTask(taskId);
-            console.log('Task list deleted');
+            this.toastSvc.presentToast('Task list deleted');
           },
         },
       ],
@@ -121,16 +122,24 @@ export class TaskPageComponent implements OnInit {
   }
 
   startTimer(task: TaskModel) {
+    if (this.timerComponent.timerRunning) {
+      this.toastSvc.presentToast('A timer is already running');
+      return;
+    }
+
     this.selectedTask = task;
     this.timerComponent.task = task;
     this.timerComponent.startTimer();
+
+    // Subscribe to the timerAlreadyRunning event
+    this.timerComponent.timerAlreadyRunning.subscribe(() => {
+      this.toastSvc.presentToast('A timer is already running');
+    });
   }
 
   onTimerCompleted() {
     if (this.selectedTask) {
       const updatedTask: TaskModel = { ...this.selectedTask, completed: true };
-      console.log('updatedTask is', updatedTask);
-
       this.taskService.updateTask(updatedTask);
       // Update the tasks array with the updated task
       const taskIndex = this.tasks.findIndex(

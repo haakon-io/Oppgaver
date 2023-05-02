@@ -23,9 +23,7 @@ export class TaskListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('task-list.component openened and input si', this.taskList);
     if (this.taskList) {
-      console.log('taskList is', this.taskList);
       this.taskListData = { ...this.taskList };
     } else {
       this.taskListData = {
@@ -38,8 +36,6 @@ export class TaskListComponent implements OnInit {
   async onSave() {
     if (this.taskList) {
       let tTasks: TaskModel[] = this.taskList.tasks || [];
-
-      // Create a new TaskListModel instance with the updated data
       const updatedTaskListData = new TaskListModel(
         this.taskListData.name ?? '',
         this.taskListData.description ?? '',
@@ -47,7 +43,6 @@ export class TaskListComponent implements OnInit {
       );
       updatedTaskListData.id = this.taskList.id;
 
-      // Assign the updated values to the taskList object
       this.taskList.id = updatedTaskListData.id;
       this.taskList.name = updatedTaskListData.name;
       this.taskList.description = updatedTaskListData.description;

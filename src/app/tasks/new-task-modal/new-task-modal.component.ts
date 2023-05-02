@@ -35,7 +35,6 @@ export class NewTaskModalComponent implements OnInit {
   }
 
   async onSubmit() {
-    console.log('onSubmit() and the task is', this.task);
     if (this.task) {
       await this.taskService.updateTask(this.taskData as TaskModel);
     } else {
@@ -46,5 +45,14 @@ export class NewTaskModalComponent implements OnInit {
 
   onCancel() {
     this.modalController.dismiss();
+  }
+
+  toggleTime(task: Partial<TaskModel>) {
+    if (task && task.timedTask !== null) {
+      task.timedTask = !task.timedTask;
+    }
+    if (task.timedTask === false) {
+      task.timeLength = 0;
+    }
   }
 }

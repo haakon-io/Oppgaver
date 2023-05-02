@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { TaskService } from '../tasks/services/task.service';
 import { TaskListService } from '../tasks/services/task-list.service';
 import { TaskListData, TaskListModel } from '../tasks/models/task-list.model';
 import { TaskModel } from '../tasks/models/task.model';
 import { HttpClient } from '@angular/common/http';
+import { ToastService } from '../shared/services/toast-service.service';
 
 @Component({
   selector: 'app-admin',
@@ -18,10 +19,10 @@ export class AdminComponent {
     private storage: Storage,
     private router: Router,
     private alertController: AlertController,
-    private toastController: ToastController,
     private taskService: TaskService,
     private taskListService: TaskListService,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private toastService: ToastService
   ) {}
 
   async purgeLocalStorage() {
@@ -38,14 +39,14 @@ export class AdminComponent {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            this.presentToast('Database Reset Cancelled');
+            this.toastService.presentToast('Database Reset Cancelled');
           },
         },
         {
           text: 'Purge',
           handler: () => {
             this.taskListService.purgeLocalStorage();
-            this.presentToast('Database Reset Successful');
+            this.toastService.presentToast('Database Reset Successful');
           },
         },
       ],
@@ -87,16 +88,8 @@ export class AdminComponent {
       await this.taskService.createTask(task);
     }
 
-    await this.presentToast('Sample Task List created successfully!');
-  }
-
-  async presentToast(message: string, duration = 2000) {
-    const toast = await this.toastController.create({
-      message,
-      duration,
-      position: 'top',
-    });
-
-    await toast.present();
+    await this.toastService.presentToast(
+      'Sample Task List created successfully!'
+    );
   }
 }

@@ -9,7 +9,9 @@ import { TaskModel } from '../../models/task.model';
 export class TimerComponent implements OnInit {
   @Input() task!: TaskModel | null;
   @Output() timerCompleted = new EventEmitter<void>();
+  @Output() timerAlreadyRunning = new EventEmitter<void>();
   counter: { min: number; sec: number } = { min: 0, sec: 0 };
+  timerRunning = false;
 
   constructor() {}
 
@@ -19,9 +21,14 @@ export class TimerComponent implements OnInit {
     if (!this.task) {
       return;
     }
+    if (this.timerRunning) {
+      this.timerAlreadyRunning.emit();
+      return;
+    }
 
     const timeLengthInMinutes = this.task.timeLength;
     this.counter = { min: timeLengthInMinutes, sec: 0 };
+    this.timerRunning = true;
 
     let intervalId = setInterval(() => {
       if (this.counter.sec - 1 == -1) {
@@ -30,6 +37,7 @@ export class TimerComponent implements OnInit {
       } else this.counter.sec -= 1;
       if (this.counter.min === 0 && this.counter.sec == 0) {
         clearInterval(intervalId);
+        this.timerRunning = false;
         this.timerCompleted.emit(); // Emit the event when the timer has completed
       }
     }, 1000);
