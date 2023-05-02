@@ -38,14 +38,14 @@ export class AdminComponent {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            console.log('Purge canceled');
+            this.presentToast('Database Reset Cancelled');
           },
         },
         {
           text: 'Purge',
           handler: () => {
             this.taskListService.purgeLocalStorage();
-            console.log('Local storage purged');
+            this.presentToast('Database Reset Successful');
           },
         },
       ],

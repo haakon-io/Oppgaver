@@ -62,11 +62,13 @@
                 <ion-buttons slot="start">
                   <ion-button
                     *ngIf="!task.completed"
-                    (click)="startTimer(task); $event.stopPropagation()"
+                    (click)="
+                      presentConfirmDelete(task.id); $event.stopPropagation()
+                    "
                   >
                     <ion-icon
-                      name="timer-outline"
-                      class="timer-icon"
+                      name="trash-outline"
+                      class="trash-icon"
                     ></ion-icon>
                   </ion-button>
 
@@ -74,7 +76,7 @@
                     (click)="editTask(task); $event.stopPropagation()"
                   >
                     <ion-icon
-                      name="build-outline"
+                      name="settings-outline"
                       class="build-icon"
                     ></ion-icon>
                   </ion-button>
@@ -83,11 +85,9 @@
               <ion-buttons slot="end" class="i-buttons-end">
                 <ion-button
                   *ngIf="!task.completed"
-                  (click)="
-                    presentConfirmDelete(task.id); $event.stopPropagation()
-                  "
+                  (click)="startTimer(task); $event.stopPropagation()"
                 >
-                  <ion-icon name="trash-outline" class="trash-icon"></ion-icon>
+                  <ion-icon name="timer-outline" class="timer-icon"></ion-icon>
                 </ion-button>
               </ion-buttons>
             </ion-toolbar>
