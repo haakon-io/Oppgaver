@@ -29,8 +29,18 @@ export class TaskListService {
 
   async getTaskLists(): Promise<TaskListModel[]> {
     await this.init();
-    const taskLists = await this._storage?.get(this.taskListsKey);
-    return taskLists ?? [];
+    let taskLists = await this._storage?.get(this.taskListsKey);
+    taskLists = taskLists ?? [];
+
+    // Sort the taskLists array in descending order of createdAt
+    taskLists.sort((a: TaskListModel, b: TaskListModel) => {
+      if (!a.createdAt || !b.createdAt) {
+        return 0; // if either createdAt property is undefined or null, return 0 to maintain the order
+      }
+      return b.createdAt.getTime() - a.createdAt.getTime();
+    });
+
+    return taskLists;
   }
 
   async createTaskList(taskListData: TaskListData): Promise<TaskListModel> {
