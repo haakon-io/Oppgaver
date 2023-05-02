@@ -13,13 +13,13 @@
   <ng-container *ngFor="let taskList of tasksListData">
     <ion-card class="i-card">
       <ion-card-header>
-        <ion-card-title (click)="editTaskList(taskList)">{{
+        <ion-card-title (click)="editTaskList(taskList)" class="i-card-title">{{
           taskList.name
         }}</ion-card-title>
       </ion-card-header>
       <ion-card-content>{{ taskList.description }}</ion-card-content>
       <ion-toolbar>
-        <ion-buttons slot="end" class="i-buttons-end">
+        <ion-buttons slot="start" class="i-buttons-start">
           <ion-button
             title="Delete Task List"
             (click)="
@@ -38,6 +38,8 @@
               class="tasks-edit-icon"
             ></ion-icon>
           </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end" class="i-buttons-end">
           <ion-button
             title="Edit Tasks"
             (click)="editTaskList(taskList); $event.stopPropagation()"
