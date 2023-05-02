@@ -7,9 +7,7 @@
   &-name.completed {
     color: #4caf50;
   }
-  &-description,
-  &-completed,
-  &-length {
+  &-description {
     font-family: "Roboto", sans-serif;
     color: white;
     font-size: 1.25rem;
@@ -30,6 +28,11 @@
     height: 100%;
     text-align: center;
   }
+  &-items {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.25rem;
+  }
 }
 
 .ellipse-icon {
@@ -46,6 +49,11 @@
   color: #4caf50;
 }
 
+.ellipse-icon {
+  color: red;
+  margin-right: 1rem;
+}
+
 .trash-icon {
   color: red;
 }
@@ -53,4 +61,24 @@
 .build-icon,
 .timer-icon {
   color: white;
+}
+
+.timer-container {
+  display: flex;
+  align-items: center;
+}
+
+.counter {
+  font-size: 0.8em; // Adjust the font size to better fit within the toolbar
+  margin-right: 8px;
+}
+
+.i-card {
+  background-color: #222328;
+  padding: 1.5rem;
+  border: 1px solid #626262;
+}
+
+ion-card ion-toolbar {
+  --background: #222328;
 }
