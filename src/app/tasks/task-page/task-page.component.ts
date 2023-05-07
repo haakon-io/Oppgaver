@@ -154,4 +154,23 @@ export class TaskPageComponent implements OnInit {
   goToTasksHome() {
     this.router.navigate(['/tasks']);
   }
+
+  toggleComplete(task: TaskModel) {
+    let uTask: TaskModel = {
+      id: task.id,
+      taskListId: task.taskListId,
+      name: task.name,
+      description: task.description,
+      completed: (task.completed = !task.completed),
+      timedTask: task.timedTask,
+      timeLength: task.timeLength,
+    };
+
+    try {
+      this.taskService.updateTask(uTask);
+      this.toastSvc.presentToast(task.name + ' task marked complete');
+    } catch (error) {
+      this.toastSvc.presentToast('Error updating Task!');
+    }
+  }
 }

@@ -17,10 +17,20 @@
           taskList.name
         }}</ion-card-title>
       </ion-card-header>
-      <ion-card-content>{{ taskList.description }}</ion-card-content>
+
+      <ion-card-content>
+        <div class="tasks-descr">
+          {{ taskList.description }}
+        </div>
+        <div class="tasks-date">
+          {{ taskList.createdAt | date : "short" }}
+        </div>
+      </ion-card-content>
       <ion-toolbar>
         <ion-buttons slot="start" class="i-buttons-start">
           <ion-button
+            class="task-button"
+            shape="round"
             title="Delete Task List"
             (click)="
               presentConfirmDelete(taskList.id); $event.stopPropagation()
@@ -30,6 +40,8 @@
           </ion-button>
 
           <ion-button
+            class="task-button"
+            shape="round"
             title="Edit Task List"
             (click)="editTaskListItem(taskList); $event.stopPropagation()"
           >
@@ -41,6 +53,8 @@
         </ion-buttons>
         <ion-buttons slot="end" class="i-buttons-end">
           <ion-button
+            class="task-button"
+            shape="round"
             title="Edit Tasks"
             (click)="editTaskList(taskList); $event.stopPropagation()"
           >

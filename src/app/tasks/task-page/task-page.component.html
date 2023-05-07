@@ -58,6 +58,8 @@
               <ion-buttons>
                 <ion-buttons slot="start">
                   <ion-button
+                    class="task-button"
+                    shape="round"
                     *ngIf="!task.completed"
                     (click)="
                       presentConfirmDelete(task.id); $event.stopPropagation()
@@ -70,6 +72,8 @@
                   </ion-button>
 
                   <ion-button
+                    class="task-button"
+                    shape="round"
                     (click)="editTask(task); $event.stopPropagation()"
                   >
                     <ion-icon
@@ -79,16 +83,32 @@
                   </ion-button>
                 </ion-buttons>
               </ion-buttons>
-              <ion-buttons
-                slot="end"
-                class="i-buttons-end"
-                *ngIf="task.timeLength > 0"
-              >
+              <ion-buttons slot="end" class="i-buttons-end">
                 <ion-button
-                  *ngIf="!task.completed"
+                  class="task-button"
+                  shape="round"
+                  *ngIf="!task.completed && task.timeLength > 0"
                   (click)="startTimer(task); $event.stopPropagation()"
                 >
                   <ion-icon name="timer-outline" class="timer-icon"></ion-icon>
+                </ion-button>
+                <ion-button
+                  class="task-button"
+                  shape="round"
+                  (click)="toggleComplete(task); $event.stopPropagation()"
+                >
+                  <ion-icon
+                    *ngIf="!task.completed"
+                    name="ellipse-outline"
+                    class="ellipse-icon"
+                  ></ion-icon>
+                  <ion-icon
+                    *ngIf="task.completed"
+                    name="checkmark-circle-outline"
+                    [ngClass]="{ completed: task.completed }"
+                    class="checkmark-icon"
+                    shape="round"
+                  ></ion-icon>
                 </ion-button>
               </ion-buttons>
             </ion-toolbar>
