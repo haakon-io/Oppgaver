@@ -35,3 +35,6 @@ Ionic Task Timer application
 2. Oppgaver is Norwegian for "Tasks".
 
 ![Application Screenshot](screenshots/screen_main.png)
+![Application Screenshot](screenshots/screen_task.png)
+![Application Screenshot](screenshots/screen_createtask.png)
+![Application Screenshot](screenshots/screen_settings.png)
