@@ -33,3 +33,5 @@ Ionic Task Timer application
 
 1. All code written by Haakon Hestness - http://www.letsmakeawesome.com
 2. Oppgaver is Norwegian for "Tasks".
+
+![Application Screenshot](screenshots/screen_main.png)
