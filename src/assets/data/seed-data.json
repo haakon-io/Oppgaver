@@ -26,6 +26,110 @@
       "completed": false,
       "timedTask": true,
       "timeLength": 2
+    },
+    {
+      "taskListId": "",
+      "name": "Autolyse",
+      "description": "Cover dough and let Autolyse for 20 minutes.",
+      "completed": false,
+      "timedTask": true,
+      "timeLength": 20
+    },
+    {
+      "taskListId": "",
+      "name": "Add Yeast & Malt Powder",
+      "description": "Add 3G Yeast and 10G of Malt Powder and mix on low for 2 minutes.",
+      "completed": false,
+      "timedTask": true,
+      "timeLength": 2
+    },
+    {
+      "taskListId": "",
+      "name": "Knead the dough",
+      "description": "Knead the dough on medium high in your stand mixer for 4.5 minutes.",
+      "completed": false,
+      "timedTask": true,
+      "timeLength": 4.5
+    },
+    {
+      "taskListId": "",
+      "name": "Let rise",
+      "description": "Remove the dough from the stand mixer bowl and place in a bowl then cover with plastic wrap for 30 minutes.",
+      "completed": false,
+      "timedTask": true,
+      "timeLength": 30
+    },
+    {
+      "taskListId": "",
+      "name": "Fold dough",
+      "description": "Fold dough over itself, re-cover and let rise for 2 hours.",
+      "completed": false,
+      "timedTask": true,
+      "timeLength": 120
+    },
+    {
+      "taskListId": "",
+      "name": "Divide dough",
+      "description": "Remove the dough from the bowl and using your scale, divide the dough into 3 pieces.",
+      "completed": false,
+      "timedTask": false,
+      "timeLength": 0
+    },
+    {
+      "taskListId": "",
+      "name": "Preshape & Rise",
+      "description": "Fold each dough piece into a ball shape, place each in a covered bowl or let rise covered on the counter for 30 minutes",
+      "completed": false,
+      "timedTask": true,
+      "timeLength": 30
+    },
+    {
+      "taskListId": "",
+      "name": "Shape Baguettes",
+      "description": "Pat down each dough piece, roughly shape into a rectangle and then fold the top down 3/4 of the way. Turn the dough and fold over itself. Next roll the dough into Baguette shapes and if you have a Baguette pan, place each loaf in the pan.",
+      "completed": false,
+      "timedTask": false,
+      "timeLength": 0
+    },
+    {
+      "taskListId": "",
+      "name": "Let Baguettes Rise",
+      "description": "Cover the Baguettes with a clean dish towel and let rise for 30 minutes. Preheat your oven to 550 degrees.",
+      "completed": false,
+      "timedTask": false,
+      "timeLength": 30
+    },
+    {
+      "taskListId": "",
+      "name": "Score Baguettes",
+      "description": "Using a Lame or a very sharp knife, score the top of the Baguettes on a slight angle about 4 times along the top of the Baguettes.",
+      "completed": false,
+      "timedTask": false,
+      "timeLength": 0
+    },
+    {
+      "taskListId": "",
+      "name": "Bake Baguettes - Part 1",
+      "description": "Bake Baguettes at 550 degrees for 8 minutes.",
+      "completed": false,
+      "timedTask": false,
+      "timeLength": 8
+    },
+    {
+      "taskListId": "",
+      "name": "Bake Baguettes - Final",
+      "description": "Turn down your oven to 400 degrees and continue baking Baguettes until they are golden brown, about 28-30 minutes.",
+      "completed": false,
+      "timedTask": false,
+      "timeLength": 28
+    },
+    {
+      "taskListId": "",
+      "name": "Cool Baguettes",
+      "description": "Cool Baguettes for about 15 minutes. Once cooled, slice into one and spread with butter. Enjoy!",
+      "completed": false,
+      "timedTask": false,
+      "timeLength": 15
     }
   ]
 }
